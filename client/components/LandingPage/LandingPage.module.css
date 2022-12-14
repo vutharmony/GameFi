@@ -1,0 +1,19 @@
+.landingPage{
+    margin-top: 10%;
+}
+
+.line {
+    margin-left: 8%;
+    width: 40%;
+
+}
+
+.line{
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.line p{
+    font-weight: 500;
+    font-size: 1.2rem;
+}

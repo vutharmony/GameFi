@@ -1,0 +1,26 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    margin:7px 39px;
+}
+
+.navbar h1{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.navbar li {
+    font-size: 1.2rem;
+    display: inline-block;
+    text-decoration: none;
+    margin:4px 10px;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-around;
+}
+
+.button {
+    margin-top: 7px;
+}
