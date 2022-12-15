@@ -5,22 +5,32 @@
 }
 
 .navbar h1{
-    font-size: 1.5rem;
+    margin-top: 5px;
+    font-size: 2rem;
     font-weight: 600;
 }
 
+.navbar ul{
+    margin-left: 13%;
+    width: 400px;
+}
+
 .navbar li {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     display: inline-block;
     text-decoration: none;
-    margin:4px 10px;
+    margin:15px 10px 0;
 }
 
 .heading {
     display: flex;
-    justify-content: space-around;
+    justify-content:flex-end;
 }
 
 .button {
-    margin-top: 7px;
+    margin-top: 8px;
+}
+
+.logo {
+    display: flex;
 }

@@ -1,0 +1,33 @@
+.card {
+    width: 380px;
+    border-radius: 20px;
+}
+
+.main img{
+    border-radius: 20px 20px 0 0;
+    height: 230px;
+}
+
+.side img{
+    border: 5px solid white;
+    position: relative;
+    bottom: 15px;
+    z-index: 10;
+    margin-left: 30px;
+    width: 100px;
+    height: 80px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.side {
+    display: inline-block;
+    /* justify-content: space-around; */
+}
+
+.side h3{
+    display: inline-block;
+    margin-left: 20px;
+    font-size: 16px;
+    font-weight: 600;
+}

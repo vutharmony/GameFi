@@ -6,13 +6,13 @@ const Navbar = () => {
   return (
     <div className={classes.navbar}>
       <div className={classes.heading}>
-        <div>
-          <h1>GameFi</h1>
+        <div className={classes.logo}>
+          <h1><Link href="/">GameFi</Link></h1>
         </div>
         <div>
           <ul>
-            <li><Link href="/">Link1</Link></li>
-            <li><Link href="/home">Link2</Link></li>
+            <li><Link href="/Discover">Discover</Link></li>
+            <li><Link href="/YourNft">Your NFTs</Link></li>
           </ul>
         </div>
       </div>

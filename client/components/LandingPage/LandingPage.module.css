@@ -1,19 +1,35 @@
 .landingPage{
-    margin-top: 10%;
+    margin-top: 7%;
+    margin-right: 2%;
+    display: flex;
+    justify-content: space-around;
 }
 
 .line {
     margin-left: 8%;
-    width: 40%;
+    width: 35%;
 
 }
 
-.line{
-    font-size: 1.6rem;
+.heading{
+    font-size: 3.4rem;
     font-weight: 600;
 }
 
 .line p{
+    margin-top: 5px;
     font-weight: 500;
     font-size: 1.2rem;
+}
+
+.button {
+    margin-top:5%;
+}
+
+.nft {
+    width: 400px;
+}
+
+.nft img{
+    border-radius: 20px;
 }

@@ -22,7 +22,7 @@ const ethereumClient = new EthereumClient(wagmiClient, chains);
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <div>
       <WagmiConfig client={wagmiClient}>
         <Navbar />
         <Component {...pageProps} />
@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }) {
         projectId="b08c4d212ce5bfdb690669143407dfd1"
         ethereumClient={ethereumClient}
       />
-    </>
+    </div>
     )
 }
 
