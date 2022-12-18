@@ -1,8 +1,15 @@
 import classes from "./Card.module.css";
+import {useRouter} from "next/router";
 
 const Card = () => {
+    const router = useRouter();
+
+    const redirectHandler = async () => {
+        router.push('Discover/hell')
+    }
+
     return (
-        <div className={classes.card}>
+        <div className={classes.card} onClick={redirectHandler}>
             <div className={classes.main}>
                 <img src ="valo.jpg" alt =""/>
             </div>
