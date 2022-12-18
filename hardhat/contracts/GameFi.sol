@@ -163,7 +163,7 @@ contract GameFi is ERC721URIStorage{
                  _currentNftProfile.leftOrExtraTime = int(block.timestamp)-(time + 40 seconds);
             }
         }
-
+        ///@dev todo do the same step for level2 and test it again
         nftProfiles[_currentNftProfile.id-1] = _currentNftProfile;
         
     }
