@@ -8,6 +8,7 @@
 .main img{
     border-radius: 20px 20px 0 0;
     height: 230px;
+    width: 100%;
 }
 
 .side img{

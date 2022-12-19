@@ -115,6 +115,10 @@ contract GameFi is ERC721URIStorage{
         emit tokenMint(tokenId, msg.sender);
     }
 
+    function addGame(string calldata _gameName) external onlyOwner{
+        games.push(_gameName);
+    }
+
     function getGameData(string calldata _gameName) external view returns(nftProfile[] memory){
         return gamingNfts[_gameName];
     }
@@ -127,6 +131,10 @@ contract GameFi is ERC721URIStorage{
             }
 
             return tokenArray;
+    }
+
+    function getGames() external view returns(string[] memory){
+        return games;
     }
 
     function getOwnedId() external view returns(uint[] memory){
@@ -161,6 +169,15 @@ contract GameFi is ERC721URIStorage{
                 _currentNftProfile.currentLevel = 2;
             }else{
                  _currentNftProfile.leftOrExtraTime = int(block.timestamp)-(time + 40 seconds);
+            }
+        }else if(_currentNftProfile.currentLevel == 2){
+                if(int(block.timestamp)-time >= 60 seconds){
+                _setTokenURI(_tokenId, _currentNftProfile.stageMetadatas[2]);
+                _currentNftProfile.leftOrExtraTime = int(block.timestamp)-(time + 60 seconds);
+                _currentNftProfile._upgradationTime=0;
+                _currentNftProfile.currentLevel = 3;
+            }else{
+                 _currentNftProfile.leftOrExtraTime = int(block.timestamp)-(time + 60 seconds);
             }
         }
         ///@dev todo do the same step for level2 and test it again

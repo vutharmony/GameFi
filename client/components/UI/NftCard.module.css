@@ -1,6 +1,6 @@
 .card {
     border-radius: 20px;
-    width: 210px;
+    width: 220px;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
@@ -16,7 +16,7 @@
 }
 
 .card button {
-    width:210px;
+    width:220px;
 }
 
 .image {

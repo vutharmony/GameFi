@@ -2,6 +2,8 @@ import {EthereumClient, modalConnectors, walletConnectProvider} from "@web3modal
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { arbitrum, mainnet, polygon, polygonMumbai } from "wagmi/chains";
 import { Web3Modal } from "@web3modal/react"; 
+import { Provider } from "react-redux";
+import store from "../store";
 
 import Navbar from '../components/Navbar/Navbar';
 import "../styles/globals.css";
@@ -22,7 +24,7 @@ const ethereumClient = new EthereumClient(wagmiClient, chains);
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div>
+    <Provider store={store}>
       <WagmiConfig client={wagmiClient}>
         <Navbar />
         <Component {...pageProps} />
@@ -33,7 +35,7 @@ function MyApp({ Component, pageProps }) {
         projectId="b08c4d212ce5bfdb690669143407dfd1"
         ethereumClient={ethereumClient}
       />
-    </div>
+    </Provider>
     )
 }
 
