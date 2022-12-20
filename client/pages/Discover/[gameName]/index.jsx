@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import { useRouter } from "next/router";
-import {ethers} from "ethers";
 
 const Collection = () => {
     const router = useRouter();
@@ -16,16 +15,17 @@ const Collection = () => {
             
             (async function(){
                 const collection = await contract.getGameData(router.query.gameName);
-                console.log('collection', collection[0]);
+                console.log('collection', collection[1]);
+
                 setNftCollection(collection);
             })();
         }
     }, [isConnected]);
     //marginleft&top is just for testing purposes replace it with better css later
     return (
-        <div style={{marginLeft: "50px", marginTop: "50px"}}>
+        <div className ="grid grid-cols-3" style={{marginLeft: "50px", marginTop: "50px"}}>
             {nftCollection.length>0 ? nftCollection.map((nft, index) => {
-                return <NftCard key={index} gameName={router.query.gameName} name={nft.name} price={nft.price} id={nft.id}/>
+                return <NftCard key={index} gameName={router.query.gameName} name={nft.name} price={nft.price} id={nft.id} metadatas={nft.stageMetadatas} level={nft.currentLevel.toString()}/>
             })
             :
             <h1 style={{textAlign: "center", "fontSize":"2rem", margin:"15% auto"}}>

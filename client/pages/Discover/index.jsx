@@ -21,7 +21,7 @@ const Discover = () => {
     return (
       <div>
       {games.length>0 ?
-        <div className="grid grid-cols-3 gap-1" style={{marginLeft: "30px", marginTop: "100px"}}>
+        <div className="grid grid-cols-3" style={{marginLeft: "30px", marginTop: "100px"}}>
           {games.map((game, index) => {
             return <Card key={index} name={game}/>
           })
