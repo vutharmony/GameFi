@@ -15,17 +15,16 @@ const Collection = () => {
             
             (async function(){
                 const collection = await contract.getGameData(router.query.gameName);
-                console.log('collection', collection[1]);
-
+                console.log('cc ', collection[0]);
                 setNftCollection(collection);
             })();
         }
     }, [isConnected]);
-    //marginleft&top is just for testing purposes replace it with better css later
+
     return (
         <div className ="grid grid-cols-3" style={{marginLeft: "50px", marginTop: "50px"}}>
             {nftCollection.length>0 ? nftCollection.map((nft, index) => {
-                return <NftCard key={index} gameName={router.query.gameName} name={nft.name} price={nft.price} id={nft.id} metadatas={nft.stageMetadatas} level={nft.currentLevel.toString()}/>
+                return !nft.isSold && <NftCard key={index} gameName={router.query.gameName} name={nft.name} price={nft.price} id={nft.id} metadatas={nft.stageMetadatas} level={nft.currentLevel.toString()}/>
             })
             :
             <h1 style={{textAlign: "center", "fontSize":"2rem", margin:"15% auto"}}>

@@ -17,8 +17,8 @@ const NftCard = (props) => {
     }
 
     return (
-        <div className={classes.card}>
-            <div className={classes.image} onClick={() => {router.push(`/Discover/${props.gameName}/${id}`)}}>
+        <div className={classes.card} onClick={() => {router.push(`/Discover/${props.gameName}/${id}`)}}>
+            <div className={classes.image}>
                 <Image src={"/valorant.webp"} style={imageStyle} width="220px" height="230px" alt="definitely an nft"/>
             </div>
             <div>
