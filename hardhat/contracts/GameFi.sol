@@ -79,6 +79,14 @@ contract GameFi is ERC721URIStorage{
         stageAmounts[1] = 60 seconds;
     }
 
+    function getMetadata(uint _id) external view returns(string[3] memory){
+        return currentNft[_id].stageMetadatas;
+    }
+
+    function getCurrentMetadata(uint _id) external view returns(string memory){
+        return currentNft[_id].stageMetadatas[currentNft[_id].currentLevel-1];
+    }
+
     function createNft(string calldata _name, string calldata _gameName, uint _price, string[3] memory metaDatas) external onlyOwner{
         nftCount+=1;
 
@@ -89,7 +97,9 @@ contract GameFi is ERC721URIStorage{
         newNftProfile._gameName=_gameName;
         newNftProfile.levels=3;
         newNftProfile.currentLevel=1;
-        newNftProfile.stageMetadatas=metaDatas;
+        newNftProfile.stageMetadatas[0]=metaDatas[0];
+        newNftProfile.stageMetadatas[1]=metaDatas[1];
+        newNftProfile.stageMetadatas[2]=metaDatas[2];
         newNftProfile.isFlow=false;
         newNftProfile.price=_price;
 

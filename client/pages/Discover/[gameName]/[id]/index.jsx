@@ -7,27 +7,42 @@ import { useAccount } from "wagmi";
 import { ethers } from "ethers";
 
 const Traits = () => {
-  const [information, setInformation] = useState(null);  
+  const [information, setInformation] = useState(null);
+  const [metaInfo, setMetaInfo] = useState('');
   const router = useRouter();
   const contract = useSelector((state) => state.auth.contract);
   const { isConnected } = useAccount();
 
   const id = router.query.id;
-  useEffect(() => {
-    if (isConnected) {
-      console.log("in here");
 
+
+  useEffect(() => {
+
+    if (isConnected) {
       (async function () {
         const data = await contract.currentNft(id);
-        console.log("data is ", data);
+        const metadata = await contract.getCurrentMetadata(id);
+        
+        const info = await fetch("http://localhost:8000/pinataData", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            cid: metadata,
+          }),
+        });
+        const res = await info.json();
+        
+        setMetaInfo(res.data);
         setInformation(data);
       })();
     }
   }, [isConnected]);
-
+  console.log('m', metaInfo.attributes[0].trait_type);
   return (
     <div>
-      { information &&
+      {information && (
         <div className={classes.trait}>
           <div>
             <Image
@@ -38,23 +53,30 @@ const Traits = () => {
             />
           </div>
           <div className={classes.description}>
-            <h1 className={classes.title}>{`${information.name} #${router.query.id}`}</h1>
+            <h1
+              className={classes.title}
+            >{`${information.name} #${router.query.id}`}</h1>
             <div className={classes.price}>
               <h2>Price</h2>
-              <h3>{ethers.utils.formatEther(information.price.toString())} ETH</h3>
+              <h3>
+                {ethers.utils.formatEther(information.price.toString())} ETH
+              </h3>
             </div>
             <div className={classes.qualities}>
-              <h4>Eyes: Rare</h4>
-              <h4>Hairs: White</h4>
-              <h4>Power: 70%</h4>
+              <h4>Image Url: {metaInfo.image}</h4>
+              <h4>{metaInfo.attributes[0].trait_type}: {metaInfo.attributes[0].value}</h4>
+              <h4>{metaInfo.attributes[1].trait_type}: {metaInfo.attributes[1].value}</h4>
+              <h4>Level: {information.currentLevel.toString()}</h4>
             </div>
             <div className={classes.upgrade}>
-              <h1>{3-information.currentLevel.toString()} upgrades available</h1>
+              <h1>
+                {3 - information.currentLevel.toString()} upgrades available
+              </h1>
             </div>
             <button className="btn btn-wide btn-warning">Buy Now</button>
           </div>
         </div>
-      }
+      )}
     </div>
   );
 };
