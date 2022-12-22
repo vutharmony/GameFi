@@ -32,7 +32,6 @@ const Traits = () => {
           }),
         });
         const res = await info.json();
-        console.log(res.data);
         setIsOwned(data.isSold);
         setMetaInfo(res.data);
         setInformation(data);

@@ -34,7 +34,7 @@ const OwnedCard = (props) => {
         <div className={classes.card} onClick={() => {router.push(`/YourNft/${nftId}?tokenId=${tokenId}`)}}>
             <div className={classes.image}>
                 <Image src={"/valorant.webp"} style={imageStyle} width="220px" height="230px" alt="definitely an nft"/>
-            </div>
+            </div> 
             <div>
                 <h3>{data?.name}</h3>
                 <h4>Level {data?.currentLevel?.toString()}</h4>
