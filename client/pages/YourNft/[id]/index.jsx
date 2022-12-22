@@ -5,14 +5,16 @@ import {useAccount} from "wagmi";
 import { useSelector } from "react-redux";
 import { ethers } from "ethers";
 import Image from "next/image";
+import { createStream, deleteStream } from "../../../superfluid/Superfluid";
 
 const Details = () => {
   const [nftInformation, setNftInformation] = useState('');
   const [metaInfo, setMetaInfo] = useState('');
   const [upgrading, setUpgrading] = useState(false);
   const [upgradeValue, setUpgradeValue] = useState(0);
-  const {isConnected} = useAccount();
+  const {isConnected, address} = useAccount();
   const contract = useSelector((state) => state.auth.contract);
+  const signer = useSelector((state) => state.auth.signer);
   const router = useRouter();
 
   const nftId = router.query.id;
@@ -44,23 +46,31 @@ const Details = () => {
     }, [isConnected]);
 
     const upgradeHandler = async () => {
+        /**Start the money stream for 'n' seconds acc to level number */
+        //call createStream here
+
         // const tx = await contract.upgrade(tokenId);
         // setUpgrading(true);
-        var v = 0;
-        if(setInterval === 100){
-            clearInterval(intervalId)
-            return;
-        }
+        
+        //let it run for n no of seconds
+        // var v = 0;
+        // if(setInterval === 100){
+        //     clearInterval(intervalId)
+        //     return;
+        // }
 
-        const intervalId = setInterval(() => {
-            v +=1;
-            if(v > 20){
-                clearInterval(intervalId);
-                return;
-            }
-            setUpgradeValue((upgradeValue) => upgradeValue+1)
+        // const intervalId = setInterval(() => {
+        //     v +=1;
+        //     if(v > 20){
+        //         clearInterval(intervalId);
+        //         return;
+        //     }
+        //     setUpgradeValue((upgradeValue) => upgradeValue+1)
             
-        }, 1000);
+        // }, 1000);
+
+        /**stop streaming after n no of seconds here */
+        /**call stop function in smart contract to stop the upgradation */
     }
 
   return (
@@ -68,8 +78,8 @@ const Details = () => {
     { nftInformation !== '' &&
       <div className={classes.trait}>
         <div>
-          <Image
-            src="/valorant.webp"
+          <img
+            src="https://gateway.pinata.cloud/ipfs/QmaFMPmV4J8KkjZLZDeTX3TV9jLurwvhvhA3zXdvYSD2Jb"
             width="450px"
             height="550px"
             alt="the image with description"
