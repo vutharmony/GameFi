@@ -25,6 +25,7 @@ export const createStream = async(signer, address) => {
         console.log("Creating stream");
         
         const result = await flowOp.exec(signer);
+        await result.wait();
         console.log(result);
 
         console.log(
@@ -66,7 +67,8 @@ export const deleteStream = async (signer, address) => {
 
         console.log("Deleting your stream");
 
-        await deleteOp.exec(signer);
+        const tx = await deleteOp.exec(signer);
+        await tx.wait();
 
         console.log(
             `Congrats - you've just deleted your money stream!

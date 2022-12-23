@@ -1,4 +1,3 @@
-import Image from "next/image";
 import classes from "./Traits.module.css";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -55,8 +54,8 @@ const Traits = () => {
       {information && (
         <div className={classes.trait}>
           <div>
-            <Image
-              src="/valorant.webp"
+            <img
+              src={`https://gateway.pinata.cloud/ipfs/${metaInfo.image.substr(7, metaInfo.image.length)}`}
               width="450px"
               height="550px"
               alt="the image with description"

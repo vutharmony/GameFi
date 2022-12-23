@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import {useAccount} from "wagmi";
 import { useSelector } from "react-redux";
 import { ethers } from "ethers";
-import Image from "next/image";
 import { createStream, deleteStream } from "../../../superfluid/Superfluid";
 
 const Details = () => {
@@ -49,37 +48,50 @@ const Details = () => {
         /**Start the money stream for 'n' seconds acc to level number */
         //call createStream here
 
-        // const tx = await contract.upgrade(tokenId);
-        // setUpgrading(true);
+        await createStream(signer, address);
+        const tx = await contract.upgrade(tokenId);
+        await tx.wait()
+        setUpgrading(true);
         
         //let it run for n no of seconds
-        // var v = 0;
-        // if(setInterval === 100){
-        //     clearInterval(intervalId)
-        //     return;
-        // }
+        var v = 0;
+        let timeToRun;
 
-        // const intervalId = setInterval(() => {
-        //     v +=1;
-        //     if(v > 20){
-        //         clearInterval(intervalId);
-        //         return;
-        //     }
-        //     setUpgradeValue((upgradeValue) => upgradeValue+1)
-            
-        // }, 1000);
+        if(nftInformation.currentLevel.toString() == 1){
+            timeToRun = 440;
+        }else if(nftInformation.currentLevel.toString() == 2){
+          timeToRun = 640;
+        }
 
+        const intervalId = setInterval(() => {
+            v +=1;
         /**stop streaming after n no of seconds here */
         /**call stop function in smart contract to stop the upgradation */
+            if(v >= 100){
+                (async function(){
+                  clearInterval(intervalId);
+                  await deleteStream(signer, address)
+                  await contract.stopFlow(tokenId);
+                  setUpgradeValue(0)
+                  setUpgrading(false);
+                  return;
+                })()
+
+            }
+            setUpgradeValue((upgradeValue) => upgradeValue+1)
+            
+        }, timeToRun);
+
+
     }
 
   return (
     <div>
     { nftInformation !== '' &&
       <div className={classes.trait}>
-        <div>
+        <div className={classes.image}>
           <img
-            src="https://gateway.pinata.cloud/ipfs/QmaFMPmV4J8KkjZLZDeTX3TV9jLurwvhvhA3zXdvYSD2Jb"
+            src={`https://gateway.pinata.cloud/ipfs/${metaInfo.image.substr(7, metaInfo.image.length)}`}
             width="450px"
             height="550px"
             alt="the image with description"
@@ -97,7 +109,6 @@ const Details = () => {
           </div>
           {metaInfo !== "" && (
             <div className={classes.qualities}>
-              <h4>Image Url: {metaInfo.image}</h4>
               <h4>
                 {metaInfo.attributes[0].trait_type}:{" "}
                 {metaInfo.attributes[0].value}
@@ -107,8 +118,8 @@ const Details = () => {
                 {metaInfo.attributes[1].value}
               </h4>
               <h4>Level: {nftInformation.currentLevel.toString()}</h4>
-              {nftInformation.currentLevel.toString() < 3 && <h4>Upgradation Time: {nftInformation.currentLevel.toString() == 1 ? "40 seconds" : nftInformation.currentLevel.toString == 2 && "60 seconds"}</h4>}
-              {!upgrading && <div>
+              {nftInformation.currentLevel.toString() < 3 && <h4>Upgradation Time: {nftInformation.currentLevel.toString() == 1 ? "40 seconds" : "60 seconds"}</h4>}
+              {upgrading && <div>
                 <span>Upgrading: &nbsp;</span> 
                 <progress className="progress progress-info w-56" value={upgradeValue} max="100"></progress>
                 &nbsp; {upgradeValue}
@@ -125,7 +136,7 @@ const Details = () => {
             className="btn btn-wide btn-warning"
             onClick={upgradeHandler}
           >
-            {upgrading ? "Upgrading": "Upgrade"}
+            {upgrading ? "Upgrading...": "Upgrade"}
           </button>
         </div>
       </div>
