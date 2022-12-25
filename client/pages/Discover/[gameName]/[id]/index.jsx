@@ -21,7 +21,7 @@ const Traits = () => {
         const data = await contract.currentNft(id);
         const metadata = await contract.getCurrentMetadata(id);
 
-        const info = await fetch("http://localhost:8000/pinataData", {
+        const info = await fetch("https://metadata-server-j0am.onrender.com/pinataData", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -38,70 +38,82 @@ const Traits = () => {
     }
   }, [isConnected]);
 
-
-  const mintHandler = async() => {
-
-    const tx = await contract.mint(router.query.id, {value: information.price})
+  const mintHandler = async () => {
+    const tx = await contract.mint(router.query.id, {
+      value: information.price,
+    });
     await tx.wait();
     setIsOwned(true);
   };
   const passHandler = async () => {
     console.log("The nft is already sold");
-  }
+  };
 
   return (
     <div>
-      {information && (
+      {information ? (
         <div className={classes.trait}>
           <div className={classes.image}>
             <img
-              src={`https://gateway.pinata.cloud/ipfs/${metaInfo.image.substr(7, metaInfo.image.length)}`}
+              src={`https://gateway.pinata.cloud/ipfs/${metaInfo.image.substr(
+                7,
+                metaInfo.image.length
+              )}`}
               width="450px"
               height="550px"
               alt="the image with description"
             />
           </div>
-          <div className="alert shadow-lg">
-          <div>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info flex-shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-              <span>12 unread messages. Tap to see.</span>
+          <div className={classes.details}>
+          <div className="alert alert-info shadow-lg">
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current flex-shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <span>{3 - information.currentLevel.toString()} upgrades available</span>
             </div>
-        </div>
-          <div className={classes.description}>
-            <h1
-              className={classes.title}
-            >{`${information.name} #${router.query.id}`}</h1>
-            <div className={classes.price}>
-              <h2>Price</h2>
-              <h3>
-                {ethers.utils.formatEther(information.price.toString())} ETH
-              </h3>
-            </div>
-            {metaInfo !== "" && (
-              <div className={classes.qualities}>
-                <h4>
-                  {metaInfo.attributes[0].trait_type}:{" "}
-                  {metaInfo.attributes[0].value}
-                </h4>
-                <h4>
-                  {metaInfo.attributes[1].trait_type}:{" "}
-                  {metaInfo.attributes[1].value}
-                </h4>
-                <h4>Level: {information.currentLevel.toString()}</h4>
-              </div>
-            )}
-            <div className={classes.upgrade}>
-              <h1>
-                {3 - information.currentLevel.toString()} upgrades available
-              </h1>
-            </div>
-            <button className="btn btn-wide btn-warning" onClick={!isOwned ? mintHandler: passHandler}>
-              {!isOwned ? "Buy Now" : "Already sold"}
-            </button>
           </div>
-          
+            <div className={classes.description}>
+              <h1
+                className={classes.title}
+              >{`${information.name} #${router.query.id}`}</h1>
+              <div className={classes.align}>
+              <div className={classes.price}>
+                <h2>Price</h2>
+                <h3>
+                  {ethers.utils.formatEther(information.price.toString())} ETH
+                </h3>
+              </div>
+              {metaInfo !== "" && (
+                <div className={classes.qualities}>
+                <h3 style={{fontSize:"1.4rem", fontWeight: "600"}}>Traits</h3>
+                  <h4>
+                    {metaInfo.attributes[0].trait_type}:{" "}
+                    {metaInfo.attributes[0].value}
+                  </h4>
+                  <h4>
+                    {metaInfo.attributes[1].trait_type}:{" "}
+                    {metaInfo.attributes[1].value}
+                  </h4>
+                  <h4>Level: {information.currentLevel.toString()}</h4>
+                </div>
+                )}
+                </div>
+            </div>
+            <div>
+              <button
+                className={`btn btn-warning ${classes.button}`}
+                onClick={!isOwned ? mintHandler : passHandler}
+              >
+                {!isOwned ? "Buy Now" : "Already sold"}
+              </button>
+            </div>
+          </div>
         </div>
-      )}
+        )
+        :
+        <div style={{textAlign:"center",margin:"15% auto"}}>
+          <progress className="progress w-56"></progress>
+        </div>
+      }
     </div>
   );
 };

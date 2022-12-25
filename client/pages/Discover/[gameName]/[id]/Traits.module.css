@@ -5,16 +5,25 @@
 }
 
 .description {
-    margin:0 auto;
+    margin:5% auto;
+    width:600px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    height: 300px;
+    border-radius: 20px;
 }
 
 .title{
-    margin-top: 4px;
-    font-size: 1.7rem;
+    text-align: center;
+    margin:4px auto;
+    font-size: 2rem;
+}
+
+.title h1{
+    font-weight: 700;
 }
 
 .price {
-    margin-top: 7%;
+    margin-top: 10%;
 }
 
 .price h2{
@@ -52,4 +61,18 @@
 
 .image {
     margin: auto 0;
+}
+
+.align {
+    display: flex;
+    justify-content: space-around;
+}
+
+.button {
+    margin-left: 50px;
+    width: 500px;
+}
+
+.details {
+    margin-left: 7%;
 }

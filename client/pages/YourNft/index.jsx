@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useAccount } from "wagmi";
 import OwnedCard from "../../components/UI/OwnedCard";
+import classes from "./YourNft.module.css";
 
 const Collection = () => {
   const { isConnected, address } = useAccount();
@@ -29,10 +30,18 @@ const Collection = () => {
   }, [isConnected]);
 
   return (
-    <div className="grid grid-cols-3">
-      {ownedToken.map((token, index) => {
-        return <OwnedCard key={index} tokenId={token} nftId={ownedId[index]}/>
-      })}
+    <div>
+      {ownedToken.length != 0 ?
+        <div className={`grid grid-cols-3 ${classes.cards}`}>
+        {ownedToken.map((token, index) => {
+          return <OwnedCard key={index} tokenId={token} nftId={ownedId[index]}/>
+        })}
+      </div>
+        :
+      <div style={{textAlign:"center",margin:"15% auto"}}>
+        <progress className="progress w-56"></progress>
+      </div>
+      }
     </div>
   );
 };
