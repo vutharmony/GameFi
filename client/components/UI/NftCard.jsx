@@ -23,7 +23,7 @@ const NftCard = (props) => {
             </div>
             <div>
                 <h3>{props.name}</h3>
-                <h4>{ethers.utils.formatEther(props.price.toString())}</h4>
+                <h4>{ethers.utils.formatEther(props.price.toString())} ETH</h4>
                 <button className="btn btn-wide btn-warning">Buy</button>
             </div>
         </div>

@@ -5,6 +5,12 @@
     justify-content: space-around;
 }
 
+.highlight{
+    background: -webkit-linear-gradient(31deg, rgba(2,0,36,1) 0%, rgba(217,37,240,0.99) 0%, rgba(190,62,241,1) 13%, rgba(174,77,241,1) 21%, rgba(166,85,241,1) 25%, rgba(233,106,242,1) 43%, rgba(12,228,245,1) 92%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
 .line {
     margin-left: 8%;
     width: 35%;

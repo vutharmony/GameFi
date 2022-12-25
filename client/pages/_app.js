@@ -30,8 +30,8 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </WagmiConfig>
       <Web3Modal
-        themeColor="green"
-        themeMode="light"
+        themeColor="blackWhite"
+        themeMode="dark"
         projectId="b08c4d212ce5bfdb690669143407dfd1"
         ethereumClient={ethereumClient}
       />

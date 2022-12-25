@@ -22,16 +22,21 @@ const Collection = () => {
     }, [isConnected]);
 
     return (
+        <>
+        {nftCollection.length>0 ? 
         <div className ="grid grid-cols-3" style={{marginLeft: "50px", marginTop: "50px"}}>
-            {nftCollection.length>0 ? nftCollection.map((nft, index) => {
+            {nftCollection.map((nft, index) => {
                 return !nft.isSold && <NftCard key={index} gameName={router.query.gameName} name={nft.name} price={nft.price} id={nft.id} metadatas={nft.stageMetadatas} level={nft.currentLevel.toString()}/>
             })
-            :
-            <h1 style={{textAlign: "center", "fontSize":"2rem", margin:"15% auto"}}>
-                Loading...
-            </h1>
             }
-        </div>
+            </div>
+            :
+            <div style={{textAlign: "center", margin:"15% auto"}}>
+                <progress className="progress w-56"></progress>
+            </div>
+        }
+ 
+        </>
     )
 };
 

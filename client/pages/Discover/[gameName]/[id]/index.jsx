@@ -53,7 +53,7 @@ const Traits = () => {
     <div>
       {information && (
         <div className={classes.trait}>
-          <div>
+          <div className={classes.image}>
             <img
               src={`https://gateway.pinata.cloud/ipfs/${metaInfo.image.substr(7, metaInfo.image.length)}`}
               width="450px"
@@ -61,6 +61,12 @@ const Traits = () => {
               alt="the image with description"
             />
           </div>
+          <div className="alert shadow-lg">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info flex-shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <span>12 unread messages. Tap to see.</span>
+            </div>
+        </div>
           <div className={classes.description}>
             <h1
               className={classes.title}
@@ -73,7 +79,6 @@ const Traits = () => {
             </div>
             {metaInfo !== "" && (
               <div className={classes.qualities}>
-                <h4>Image Url: {metaInfo.image}</h4>
                 <h4>
                   {metaInfo.attributes[0].trait_type}:{" "}
                   {metaInfo.attributes[0].value}
@@ -94,6 +99,7 @@ const Traits = () => {
               {!isOwned ? "Buy Now" : "Already sold"}
             </button>
           </div>
+          
         </div>
       )}
     </div>

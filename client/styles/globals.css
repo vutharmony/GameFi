@@ -7,7 +7,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Mukta', sans-serif;
 }
 
 a {
@@ -21,9 +21,6 @@ a {
 
 @media (prefers-color-scheme: dark) {
   html {
-    color-scheme: light;
-  }
-  body {
-    color: black;
+    color-scheme: dark;
   }
 }

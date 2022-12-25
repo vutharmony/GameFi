@@ -1,7 +1,8 @@
 .navbar{
     display: flex;
     justify-content: space-between;
-    margin:7px 39px;
+    margin:7px 0;
+    border-bottom: 1px solid rgb(234, 234, 241);
 }
 
 .navbar h1{
@@ -16,21 +17,35 @@
 }
 
 .navbar li {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
+    font-weight: 700;
     display: inline-block;
     text-decoration: none;
-    margin:15px 10px 0;
+    margin:20px 3px 0;
+    border-radius: 20px;
+    width: 30%;
+    text-align: center;
+}
+
+.heading li:hover{
+    background-color: rgb(190, 147, 188);
+    opacity: 1;
 }
 
 .heading {
     display: flex;
     justify-content:flex-end;
+    padding-left: 25px;
 }
 
 .button {
     margin-top: 8px;
+    padding-right: 25px;
 }
 
 .logo {
-    display: flex;
+     display: flex;
+     background: -webkit-linear-gradient(31deg, rgba(2,0,36,1) 0%, rgba(217,37,240,0.99) 0%, rgba(190,62,241,1) 13%, rgba(174,77,241,1) 21%, rgba(166,85,241,1) 25%, rgba(233,106,242,1) 43%, rgba(12,228,245,1) 92%);
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
 }

@@ -1,14 +1,16 @@
 import classes from "./LandingPage.module.css";
 import {useRouter} from "next/router";
+import { useState, useEffect } from "react";
 
 const LandingPage = () => {
     const router = useRouter();
+    const number = Math.floor(Math.random() * 3) + 1;
 
     return (
         <div className={classes.landingPage}>
             <div className={classes.line}>
                 <div>
-                <h1 className={classes.heading}>Discover, Collect and Grow your NFTs</h1>
+                <h1 className={classes.heading}>Discover, Collect and <span className={classes.highlight}>Grow</span> your NFTs</h1>
                 <p>Improve your gaming experience and grow your gaming NFTS with Superfluid streams</p>
             </div>
             <div className={classes.button}>
@@ -16,7 +18,7 @@ const LandingPage = () => {
             </div>
             </div>
             <div className={classes.nft}>
-                <img src="show.avif" alt="nft"/>
+                <img src="img2.avif" alt="nft"/>
             </div>
         </div>
     )

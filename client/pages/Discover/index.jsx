@@ -21,7 +21,7 @@ const Discover = () => {
     return (
       <div>
       {games.length>0 ?
-        <div className="grid grid-cols-3" style={{marginLeft: "30px", marginTop: "100px"}}>
+        <div className="grid grid-cols-3" style={{marginLeft: "35px", marginTop: "70px"}}>
           {games.map((game, index) => {
             return <Card key={index} name={game}/>
           })
@@ -29,7 +29,7 @@ const Discover = () => {
           </div>
           :
           <h1 style={{textAlign:"center", fontSize:"2rem", margin:"15% auto"}}>
-            Loading...
+          <progress className="progress w-56"></progress>
           </h1>
       }  
       </div>
