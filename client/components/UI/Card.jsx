@@ -24,6 +24,12 @@ const Card = (props) => {
             small:"pubgSmall.jpg"
         }
         setImage(obj);
+    }else if(props.name === 'call of duty'){
+        const obj = {
+            big: "codBig.jpg",
+            small: "codSmall.jpg"
+        }
+        setImage(obj)
     }
 
     }, []);
