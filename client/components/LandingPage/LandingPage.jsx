@@ -11,7 +11,7 @@ const LandingPage = () => {
             <div className={classes.line}>
                 <div>
                 <h1 className={classes.heading}>Discover, Collect and <span className={classes.highlight}>Grow</span> your NFTs</h1>
-                <p>Improve your gaming experience and grow your gaming NFTS with Superfluid streams</p>
+                <p>Improve your gaming experience and grow your gaming NFTs with Superfluid streams</p>
             </div>
             <div className={classes.button}>
                 <button className="btn btn-primary" onClick={() => router.push("/Discover")}>Start Collecting</button>

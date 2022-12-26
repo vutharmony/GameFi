@@ -33,7 +33,7 @@ const OwnedCard = (props) => {
     return (
         <div className={classes.card} onClick={() => {router.push(`/YourNft/${nftId}?tokenId=${tokenId}`)}}>
             <div className={classes.image}>
-                <Image src={"/valorant.webp"} style={imageStyle} width="220px" height="230px" alt="definitely an nft"/>
+                <Image src={"/valorant.webp"} style={imageStyle} width="250px" height="230px" alt="definitely an nft"/>
             </div> 
             <div>
                 <h3>{data?.name}</h3>

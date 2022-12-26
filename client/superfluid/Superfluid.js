@@ -16,7 +16,7 @@ export const createStream = async(signer, address) => {
 
     try {
         const flowOp = sf.cfaV1.createFlow({
-            flowRate:"10000000000000",
+            flowRate:"1000000000000000",
             sender: address,
             receiver: contractAddress,
             superToken: DAIx
