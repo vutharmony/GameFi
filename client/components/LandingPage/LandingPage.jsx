@@ -1,10 +1,8 @@
 import classes from "./LandingPage.module.css";
 import {useRouter} from "next/router";
-import { useState, useEffect } from "react";
 
 const LandingPage = () => {
     const router = useRouter();
-    const number = Math.floor(Math.random() * 3) + 1;
 
     return (
         <div className={classes.landingPage}>
